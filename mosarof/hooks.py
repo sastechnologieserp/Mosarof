@@ -144,6 +144,11 @@ app_license = "mit"
 # 		"on_trash": "method"
 # 	}
 # }
+doc_events = {
+    "Item": {
+        "before_save": "mosarof.mosarof.custom_script.item.add_custom_barcode_to_child"
+    }
+}
 
 # Scheduled Tasks
 # ---------------
