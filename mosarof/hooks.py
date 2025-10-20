@@ -82,6 +82,11 @@ doctype_js = {
 # 	"methods": "mosarof.utils.jinja_methods",
 # 	"filters": "mosarof.utils.jinja_filters"
 # }
+jinja = {
+       "methods": [
+               "mosarof.mosarof.custom_script.translator.translate_text"
+       ]
+}
 
 # Installation
 # ------------
