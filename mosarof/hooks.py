@@ -28,6 +28,10 @@ app_license = "mit"
 # app_include_css = "/assets/mosarof/css/mosarof.css"
 # app_include_js = "/assets/mosarof/js/mosarof.js"
 
+doctype_js = {
+    "Item Price": "public/js/item_price.js"
+}
+
 # include js, css files in header of web template
 # web_include_css = "/assets/mosarof/css/mosarof.css"
 # web_include_js = "/assets/mosarof/js/mosarof.js"
@@ -78,6 +82,11 @@ app_license = "mit"
 # 	"methods": "mosarof.utils.jinja_methods",
 # 	"filters": "mosarof.utils.jinja_filters"
 # }
+jinja = {
+       "methods": [
+               "mosarof.mosarof.custom_script.translator.translate_text"
+       ]
+}
 
 # Installation
 # ------------
@@ -146,9 +155,12 @@ app_license = "mit"
 # }
 doc_events = {
     "Item": {
-        "before_save": "mosarof.mosarof.custom_script.item.add_custom_barcode_to_child"
+        "before_save": "mosarof.mosarof.custom_script.item.add_custom_barcode_to_child",
+        "after_insert": "mosarof.mosarof.custom_script.item.create_opening_stock_entry"
     }
 }
+
+
 
 # Scheduled Tasks
 # ---------------
