@@ -17,9 +17,8 @@ def get_columns():
         {"label": "Item Code", "fieldname": "item_code", "fieldtype": "Link","options" : "Item" ,"width": 150},
         {"label": "Item Name", "fieldname": "item_name", "fieldtype": "Data", "width": 200},
         {"label": "Barcode", "fieldname": "barcode", "fieldtype": "Data", "width": 150},
-        {"label": "Purchase Price", "fieldname": "purchase_price", "fieldtype": "Currency", "width": 120},
-        {"label": "Valuation Rate", "fieldname": "valuation_rate", "fieldtype": "Currency", "width": 120},
-        {"label": "Selling Price", "fieldname": "selling_price", "fieldtype": "Currency", "width": 120},
+        {"label": "Valuation Rate", "fieldname": "valuation_rate", "fieldtype": "Currency","precision": 3, "width": 120},
+        {"label": "Selling Price", "fieldname": "selling_price", "fieldtype": "Currency","precision": 3,"width": 120},
          {"label": "Available Quantity", "fieldname": "actual_qty", "fieldtype": "Float", "width": 120},
         {"label": "Warehouse", "fieldname": "warehouse", "fieldtype": "Data", "width": 150},     
     ]
@@ -32,14 +31,14 @@ def get_data():
             i.item_name AS item_name,
             i.custom_barcode AS barcode,
 
-            (
-                SELECT ip.price_list_rate
-                FROM `tabItem Price` ip
-                WHERE ip.item_code = i.item_code
-                  AND ip.price_list = 'Standard Buying'
-                ORDER BY ip.creation DESC
-                LIMIT 1
-            ) AS purchase_price,
+            # (
+            #     SELECT ip.price_list_rate
+            #     FROM `tabItem Price` ip
+            #     WHERE ip.item_code = i.item_code
+            #       AND ip.price_list = 'Standard Buying'
+            #     ORDER BY ip.creation DESC
+            #     LIMIT 1
+            # ) AS purchase_price,
 
             b.valuation_rate AS valuation_rate,
 
