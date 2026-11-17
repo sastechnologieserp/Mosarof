@@ -2,9 +2,12 @@
 import frappe
 
 def add_custom_barcode_to_child(doc, method):
-    """Always barcode to Barcodes child table"""
-    if doc.custom_barcode:
-        doc.append("barcodes", {"barcode": doc.custom_barcode})
+    """Add the custom barcode to the Barcodes child table, only if it is not already there"""
+    if not doc.custom_barcode:
+        return
+    if any((row.barcode or "").strip() == doc.custom_barcode.strip() for row in doc.get("barcodes") or []):
+        return
+    doc.append("barcodes", {"barcode": doc.custom_barcode.strip()})
 
 def create_opening_stock_entry(doc, method):
     
